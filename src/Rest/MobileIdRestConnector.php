@@ -190,11 +190,11 @@ class MobileIdRestConnector implements MobileIdConnector
         $ch = curl_init($url);
 
         if( getenv( 'MOBILE_ID_CURL_PROXY_USERPASS' ) ){
-            curl_setopt( $this->curl, CURLOPT_PROXYUSERPWD, getenv( 'MOBILE_ID_CURL_PROXY_USERPASS' ) );
+            curl_setopt( $ch, CURLOPT_PROXYUSERPWD, getenv( 'MOBILE_ID_CURL_PROXY_USERPASS' ) );
         }
 
         if( getenv( 'MOBILE_ID_CURL_PROXY' ) ){
-            curl_setopt( $this->curl, CURLOPT_PROXY, getenv( 'MOBILE_ID_CURL_PROXY' ) );
+            curl_setopt( $ch, CURLOPT_PROXY, getenv( 'MOBILE_ID_CURL_PROXY' ) );
         }
 
         curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 2);
@@ -272,11 +272,11 @@ class MobileIdRestConnector implements MobileIdConnector
         $ch = curl_init($url);
 
         if( getenv( 'MOBILE_ID_CURL_PROXY_USERPASS' ) ){
-            curl_setopt( $this->curl, CURLOPT_PROXYUSERPWD, getenv( 'MOBILE_ID_CURL_PROXY_USERPASS' ) );
+            curl_setopt( $ch, CURLOPT_PROXYUSERPWD, getenv( 'MOBILE_ID_CURL_PROXY_USERPASS' ) );
         }
 
         if( getenv( 'MOBILE_ID_CURL_PROXY' ) ){
-            curl_setopt( $this->curl, CURLOPT_PROXY, getenv( 'MOBILE_ID_CURL_PROXY' ) );
+            curl_setopt( $ch, CURLOPT_PROXY, getenv( 'MOBILE_ID_CURL_PROXY' ) );
         }
 
         curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 2);
