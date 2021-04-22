@@ -188,6 +188,11 @@ class MobileIdRestConnector implements MobileIdConnector
         $this->logger->debug('POST '.$url.' contents: ' . $json);
 
         $ch = curl_init($url);
+        
+        if( getenv( 'MOBILE_ID_CURL_PROXY' ) ){
+            curl_setopt( $this->curl, CURLOPT_PROXY, getenv( 'MOBILE_ID_CURL_PROXY' ) );
+        }
+        
         curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 2);
         curl_setopt($ch, CURLOPT_FAILONERROR, true);
         curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
@@ -261,6 +266,11 @@ class MobileIdRestConnector implements MobileIdConnector
     {
 
         $ch = curl_init($url);
+        
+        if( getenv( 'MOBILE_ID_CURL_PROXY' ) ){
+            curl_setopt( $this->curl, CURLOPT_PROXY, getenv( 'MOBILE_ID_CURL_PROXY' ) );
+        }
+        
         curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 2);
         curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "GET");
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
