@@ -189,11 +189,11 @@ class MobileIdRestConnector implements MobileIdConnector
 
         $ch = curl_init($url);
 
-        if( getenv( 'MOBILE_ID_CURL_PROXY_USERPASS' ) ){
+        if( config('env.mobile-id-curl-proxy.user-pass') ){
             curl_setopt( $ch, CURLOPT_PROXYUSERPWD, config('env.mobile-id-curl-proxy.user-pass'));
         }
 
-        if( getenv( 'MOBILE_ID_CURL_PROXY' ) ){
+        if( config('env.mobile-id-curl-proxy.url') ){
             curl_setopt( $ch, CURLOPT_PROXY, config('env.mobile-id-curl-proxy.url') );
         }
 
@@ -271,11 +271,11 @@ class MobileIdRestConnector implements MobileIdConnector
 
         $ch = curl_init($url);
 
-        if( getenv( 'MOBILE_ID_CURL_PROXY_USERPASS' ) ){
+        if( config('env.mobile-id-curl-proxy.user-pass') ){
             curl_setopt( $ch, CURLOPT_PROXYUSERPWD, config('env.mobile-id-curl-proxy.user-pass'));
         }
 
-        if( getenv( 'MOBILE_ID_CURL_PROXY' ) ){
+        if( config('env.mobile-id-curl-proxy.url') ){
             curl_setopt( $ch, CURLOPT_PROXY, config('env.mobile-id-curl-proxy.url') );
         }
 
