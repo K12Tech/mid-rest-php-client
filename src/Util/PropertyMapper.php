@@ -135,11 +135,12 @@ abstract class PropertyMapper
     if ( is_array( $value ) )
     {
       $Method = new ReflectionMethod( $this, $method );
-      if ( $Method->getParameters()[0]->getClass() === null )
+      $type = $Method->getParameters()[0]->getType();
+      if ( $type === null || $type->isBuiltin() )
       {
         return $value;
       }
-      $class = $Method->getParameters()[0]->getClass()->getName();
+      $class = $type->getName();
       $result = new $class( $value );
     }
     else
