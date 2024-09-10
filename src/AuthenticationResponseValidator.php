@@ -34,6 +34,7 @@ use Sop\CryptoEncoding\PEM;
 use Sop\X509\Certificate\Certificate;
 use Sop\X509\CertificationPath\Exception\PathBuildingException;
 use Sop\X509\CertificationPath\Exception\PathValidationException;
+use UnexpectedValueException;
 
 class AuthenticationResponseValidator
 {
@@ -101,8 +102,12 @@ class AuthenticationResponseValidator
         foreach ($this->trustedCaCertificates as $trustedCaCertificate) {
             $cert = Certificate::fromPEM(PEM::fromString($certificate['certificateAsString']));
             $ca = Certificate::fromPEM(PEM::fromString($trustedCaCertificate));
-            if ($cert->verify($ca->tbsCertificate()->subjectPublicKeyInfo())) {
-                return true;
+            try {
+                if ($cert->verify($ca->tbsCertificate()->subjectPublicKeyInfo())) {
+                    return true;
+                }
+            } catch (UnexpectedValueException $e) {
+                continue;
             }
         }
         return false;
